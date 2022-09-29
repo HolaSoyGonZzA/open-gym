@@ -4,17 +4,17 @@ import styles from "../styles/Home.module.css";
 
 export async function getServerSideProps() {
   const response = await fetch(
-    "https://18reg-open-gym-7w99gxvgx542rgw4-3000.githubpreview.dev/api/exercises"
+    "http://localhost:3000/api/exercises"
   );
-  const data = await response.json();
+  const exercises = await response.json();
 
   return {
-    props: { data },
+    props: { exercises },
   };
 }
 
-export default function Home({ data }) {
-  console.log(data);
+export default function Home({ exercises }) {
+  console.log(exercises);
   return (
     <div className={styles.container}>
       <Head>
@@ -25,43 +25,20 @@ export default function Home({ data }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Open<span>Gym</span>
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))'
+          }}>
+            {exercises.map(exercise => (
+              <div key={exercise.id}>
+                <Image src={exercise.gifUrl} width={100} height={100} />
+                <p>{exercise.name}</p>
+              </div>
+            ))}
+          </div>
       </main>
 
       <footer className={styles.footer}>
