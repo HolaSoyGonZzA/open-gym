@@ -1,20 +1,24 @@
+import useSWR from "swr";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { SimpleGrid } from "@chakra-ui/react";
+import { ExerciseCard } from "@/components/ExerciseCard";
+import { Error } from "@/components/Error";
+import { Loading } from "@/components/Loading";
 
-export async function getServerSideProps() {
-  const response = await fetch(
-    "http://localhost:3000/api/exercises"
-  );
-  const exercises = await response.json();
+import { getAll } from "@/services";
 
-  return {
-    props: { exercises },
-  };
-}
+export default function Home() {
+  const { data: exercises, error } = useSWR(getAll);
 
-export default function Home({ exercises }) {
-  console.log(exercises);
+  if (error)
+    return (
+      <Error title="Error" description="An unexpected error has occurred" />
+    );
+
+  if (!exercises) return <Loading text="Loading..." />;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -24,21 +28,16 @@ export default function Home({ exercises }) {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Open<span>Gym</span>
-        </h1>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))'
-          }}>
-            {exercises.map(exercise => (
-              <div key={exercise.id}>
-                <Image src={exercise.gifUrl} width={100} height={100} />
-                <p>{exercise.name}</p>
-              </div>
-            ))}
-          </div>
+        <SimpleGrid minChildWidth={100} spacing={30}>
+          {exercises.map((exercise) => (
+            <ExerciseCard
+              key={exercise.id}
+              id={exercise.id}
+              image={exercise.gifUrl}
+              title={exercise.name}
+            />
+          ))}
+        </SimpleGrid>
       </main>
 
       <footer className={styles.footer}>
