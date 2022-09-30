@@ -9,8 +9,16 @@ import { Loading } from "@/components/Loading";
 
 import { getAll } from "@/services";
 
-export default function Home() {
-  const { data: exercises, error } = useSWR(getAll);
+export function getServerSideProps({ query }) {
+  return {
+    props: { query },
+  };
+}
+
+export default function Home({ query }) {
+  const { data: exercises, error } = useSWR(
+    `${getAll}/?body-part=${query["body-part"] || ""}`
+  );
 
   if (error)
     return (
