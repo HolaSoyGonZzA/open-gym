@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 import { SimpleGrid } from "@chakra-ui/react";
 import { ExerciseCard } from "@/components/ExerciseCard";
 import { Error } from "@/components/Error";
@@ -36,7 +36,7 @@ export default function Home({ query }) {
       </Head>
 
       <main className={styles.main}>
-        <SimpleGrid minChildWidth={100} spacing={30}>
+        <SimpleGrid minChildWidth={200} spacing={30}>
           {exercises.map((exercise) => (
             <ExerciseCard
               key={exercise.id}
