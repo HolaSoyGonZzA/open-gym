@@ -33,9 +33,11 @@ export const Error = (props) => {
             Refresh
           </Button>
           <Link href="https://github.com/18reg/open-gym/issues/new">
-            <Button variant="ghost" rightIcon={<ArrowSquareOut />}>
-              Create issue
-            </Button>
+            <a target={"_blank"}>
+              <Button variant="ghost" rightIcon={<ArrowSquareOut />}>
+                Create issue
+              </Button>
+            </a>
           </Link>
         </HStack>
       </VStack>
