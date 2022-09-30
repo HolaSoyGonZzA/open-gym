@@ -7,6 +7,3 @@ export const fetcher = async (url) => {
 };
 
 export const getAll = "/api/exercises";
-export const getBodyParts = "/api/body-parts";
-export const getEquipments = "/api/equipments";
-export const getTargets = "/api/targets";
