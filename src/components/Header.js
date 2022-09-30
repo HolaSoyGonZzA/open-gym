@@ -11,7 +11,7 @@ import {
   Collapse,
   Text,
 } from "@chakra-ui/react";
-import { ArrowSquareOut, MagnifyingGlass, Barbell, X } from "phosphor-react";
+import { ArrowSquareOut, Barbell } from "phosphor-react";
 import Tap from "@/animations/tap";
 import { useHotkeys } from "react-hotkeys-hook";
 import Link from "next/link";
@@ -52,8 +52,8 @@ export const Header = () => {
       >
         <Container maxW={{ base: "full", md: "70%" }}>
           <Flex alignItems="center" justifyContent="space-between" mx="auto">
-            <Link href="/">
-              <Tap>
+            <Tap>
+              <Link href="/">
                 <HStack spacing={3} cursor="pointer">
                   <Heading
                     fontSize="19px"
@@ -72,8 +72,8 @@ export const Header = () => {
                     Gym
                   </Heading>
                 </HStack>
-              </Tap>
-            </Link>
+              </Link>
+            </Tap>
             <HStack display="flex" alignItems="center" spacing={2}>
               <Box display={{ base: "none", md: "inline-flex" }}>
                 {links.map((link, index) => (
