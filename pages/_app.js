@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import Head from 'next/head';
 import { fetcher } from "../src/services";
 
 import theme from "@/theme";
@@ -16,6 +17,9 @@ import { Header } from "@/components/Header";
 function MyApp({ Component, pageProps, router }) {
   return (
     <>
+    <Head>
+      <title>OpenGym</title>
+    </Head>
       <NextNProgress
         color="#f50"
         startPosition={0.3}
