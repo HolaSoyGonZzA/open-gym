@@ -10,7 +10,6 @@ import {
   useDisclosure,
   Collapse,
   Text,
-  Input,
 } from "@chakra-ui/react";
 import { ArrowSquareOut, Barbell } from "phosphor-react";
 import Tap from "@/animations/tap";
@@ -37,8 +36,6 @@ export const Header = () => {
     e.preventDefault();
     onToggle();
   });
-
-  const handleInputChange = (e) => {};
 
   return (
     <>
@@ -77,17 +74,6 @@ export const Header = () => {
                 </HStack>
               </Link>
             </Tap>
-
-            <Input
-              placeholder="Search"
-              size="lg"
-              style={{
-                margin: "0 2.5rem",
-              }}
-              onChange={handleInputChange}
-              type="search"
-            />
-
             <HStack display="flex" alignItems="center" spacing={2}>
               <Box display={{ base: "none", md: "inline-flex" }}>
                 {links.map((link, index) => (
